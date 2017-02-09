@@ -7,6 +7,22 @@ window.bug_str = "";
 
 var mainApp = angular.module("mainApp", ['ngRoute']);
 
+mainApp.factory('ShareDebugPush', function ($rootScope) {
+	var share = {};
+	
+	share.msg = [];
+
+	$rootScope.$on('statusSend', function (event, data) {
+
+		share.msg.push(data);
+		console.log(share.msg);
+
+	});
+	
+	
+	return share;
+});
+
 mainApp.factory('ShareBldgCall', function ($location,LocalBase,$q) {
 	var bldgcall = {};
 	bldgcall.bldg = null;
@@ -136,3 +152,5 @@ mainApp.factory('LocalBase', function ($rootScope, $q) {
 
 	return base;
 });
+
+

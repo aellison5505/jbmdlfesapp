@@ -1,8 +1,9 @@
 
-mainApp.controller('MainController', function ($scope, $rootScope, $timeout, initLoad, LocalBase) {
+mainApp.controller('MainController', function ($scope, $rootScope, $timeout, initLoad, LocalBase, ShareDebugPush) {
 	//		trans = FileTrans;
 	//		base = Database;
 	loc = LocalBase;
+	share = ShareDebugPush;
 
 	$scope.init = function () {
 		console.log("init");
@@ -55,10 +56,6 @@ mainApp.controller('MainController', function ($scope, $rootScope, $timeout, ini
 
 	};
 
-});
-
-mainApp.controller('DebugController', function ($scope, $rootScope) {
-	$scope.message = window.bug_str;
 });
 
 mainApp.controller('MenuController', function ($scope, ShareClk, $rootScope) {
@@ -130,7 +127,7 @@ mainApp.controller('HeadController', function ($scope, ShareClk) {
 });
 
 mainApp.controller('LookupController', function ($scope, $rootScope,$timeout, ShareBldgCall) {
-
+	
 	var share = ShareBldgCall;
 
 	$scope.msg = share.doc;
@@ -142,20 +139,11 @@ mainApp.controller('LookupController', function ($scope, $rootScope,$timeout, Sh
 	
 });
 
-mainApp.controller('FooterController', function ($scope, $timeout, $rootScope) {
-	$scope.footmsg = "loading...";
+mainApp.controller('DebugController', function ($scope, $timeout, $rootScope, ShareDebugPush) {
+	
+	var share = ShareDebugPush;
+	
 
-	$rootScope.$on('statusSend', function (event, data) {
-
-		$scope.footmsg = data;
-	//	console.log(data);
-
-	});
-
-	$scope.up = function (data) {
-
-		$scope.footmsg = data;
-
-	};
+	$scope.debugmsg = share.msg;
 
 });
